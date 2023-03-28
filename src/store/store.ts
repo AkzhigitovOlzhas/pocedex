@@ -1,10 +1,16 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 
-const rootReduser = combineReducers({});
+import { PokemonAPI } from './services/PokemonService';
 
-const setupStore = () => {
+const rootReduser = combineReducers({
+  [PokemonAPI.reducerPath]: PokemonAPI.reducer,
+});
+
+export const setupStore = () => {
   return configureStore({
     reducer: rootReduser,
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware().concat(PokemonAPI.middleware),
   });
 };
 

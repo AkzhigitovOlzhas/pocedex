@@ -1,4 +1,4 @@
-// import SearchIcon from '@mui/icons-material/Search';
+import SearchIcon from '@mui/icons-material/Search';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import InputBase from '@mui/material/InputBase';
@@ -50,8 +50,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export const Navbar = () => {
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="fixed">
+    <Box>
+      <AppBar position="static">
         <Toolbar>
           <Typography
             variant="h6"
@@ -62,7 +62,9 @@ export const Navbar = () => {
             Pocedex
           </Typography>
           <Search>
-            <SearchIconWrapper>{/* <SearchIcon /> */}</SearchIconWrapper>
+            <SearchIconWrapper>
+              <SearchIcon />
+            </SearchIconWrapper>
             <StyledInputBase
               placeholder="Search…"
               inputProps={{ 'aria-label': 'search' }}

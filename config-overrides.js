@@ -8,7 +8,7 @@ module.exports = function override(config) {
     '@api': 'src/api',
     '@hooks': 'src/hooks',
     '@store': 'src/store',
-    '@types': 'src/types',
+    '@models': 'src/models',
     '@pages': 'src/pages',
     '@routes': 'src/routes',
     '@components': 'src/components',

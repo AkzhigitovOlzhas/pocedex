@@ -1,7 +1,7 @@
-import { AppContainer } from '@components/AppContainer/AppContainer';
+import { AppContainer } from '@components/AppContainer';
+import { Home } from '@pages/Home';
 import { createBrowserRouter } from 'react-router-dom';
 
-import App from '../App';
 import { appUrls } from './appUrls';
 
 export const routers = createBrowserRouter([
@@ -10,7 +10,11 @@ export const routers = createBrowserRouter([
     children: [
       {
         path: appUrls.main,
-        element: <App />,
+        element: <Home />,
+      },
+      {
+        path: appUrls.notFound,
+        element: <div>Not found</div>,
       },
     ],
   },

@@ -25,7 +25,9 @@ export const PokemonCardInfo: React.FC<Pokemon> = ({
   ability,
 }) => {
   return (
-    <Card style={{ display: 'flex', flexDirection: 'column' }}>
+    <Card
+      style={{ display: 'flex', flexDirection: 'column', overflowY: 'auto' }}
+    >
       <Grid container>
         <Grid item xs={12} sm={6} md={4} lg={3}>
           <img

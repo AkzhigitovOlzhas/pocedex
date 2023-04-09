@@ -54,13 +54,20 @@ export const PokemonCardInfo: React.FC<Pokemon> = ({
               Ability:
             </Typography>
             <ul>
-              {ability.map((a, index) => (
-                <li key={index}>
-                  <Typography variant="body2" component="p">
-                    {a[index].short_effect}
-                  </Typography>
-                </li>
-              ))}
+              {ability.map((effects, i) =>
+                effects.map(({ effect, short_effect }, j) => (
+                  <li key={i + j}>
+                    <Typography variant="body2" component="p">
+                      <Typography variant="subtitle2">Effect:</Typography>{' '}
+                      {effect}
+                    </Typography>
+                    <Typography variant="body2" component="p">
+                      <Typography variant="subtitle2">Short Effect:</Typography>{' '}
+                      {short_effect}
+                    </Typography>
+                  </li>
+                )),
+              )}
             </ul>
           </CardContent>
         </Grid>

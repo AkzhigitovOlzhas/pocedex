@@ -2,7 +2,8 @@ import { projectApi } from '@api/apiConfig';
 import { PokemonCard } from '@components/PokemonCard/PokemonCard';
 import { PokemonCardInfo } from '@components/PokemonInfoCard/PokemonInfoCard';
 import { Pokemon } from '@models/pokemon.models';
-import { Drawer, TablePagination, Typography } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
+import { Drawer, IconButton, TablePagination, Typography } from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
 import Grid from '@mui/material/Grid';
 import { Box } from '@mui/system';
@@ -81,10 +82,6 @@ export const Home = () => {
       ),
       ability,
     };
-    console.log(
-      '🚀 ~ file: Home.tsx:90 ~ handleFetchPokemon ~ pokemon:',
-      pokemon,
-    );
 
     setPokemonInfo({ isOpen: true, pokemon });
   };
@@ -137,6 +134,12 @@ export const Home = () => {
         onClose={() => setPokemonInfo({ isOpen: false })}
       >
         {pokemonInfo?.pokemon && <PokemonCardInfo {...pokemonInfo.pokemon} />}
+        <IconButton
+          onClick={() => setPokemonInfo({ isOpen: false })}
+          aria-label="delete"
+        >
+          <CloseIcon />
+        </IconButton>
       </Drawer>
     </>
   );

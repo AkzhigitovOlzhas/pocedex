@@ -8,4 +8,5 @@ export interface PokemonList {
 export interface Pokemon {
   name: string;
   url: string;
+  types: string[];
 }

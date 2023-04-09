@@ -9,26 +9,34 @@ export const PokemonAPI = createApi({
   }),
   endpoints: (build) => ({
     fetchAllPokemons: build.query({
-      query: () => ({
+      query: ({ limit = 24, offset = 0, search = '' }) => ({
         url: 'pokemon',
         method: 'get',
-        params: {
-          limit: 24,
-        },
+        params: { limit, offset, search },
       }),
-      transformResponse: async (response: PokemonList): Promise<Pokemon[]> => {
+      transformResponse: async (
+        response: PokemonList,
+        _,
+        { search },
+      ): Promise<{ count: number; pokemons: Pokemon[] }> => {
+        const filteredPokemons = response.results.filter((value) =>
+          value.name.includes(search || ''),
+        );
         const pokemons = await Promise.all(
-          response.results.map(async (pokemon: { name: string }) => {
+          filteredPokemons.map(async (pokemon: { name: string }) => {
             const { data } = await projectApi.get(`/pokemon/${pokemon.name}`);
 
             return {
               name: data.name as string,
               url: data.sprites.other.home.front_default as string,
+              types: data?.types.map(
+                (item: { type: { name: string } }) => item.type.name,
+              ),
             };
           }),
         );
 
-        return pokemons;
+        return { count: response.count, pokemons };
       },
     }),
   }),

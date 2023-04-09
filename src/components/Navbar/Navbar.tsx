@@ -5,6 +5,7 @@ import InputBase from '@mui/material/InputBase';
 import { alpha, styled } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
+import { useSearchParams } from 'react-router-dom';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -35,7 +36,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: 'inherit',
   '& .MuiInputBase-input': {
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create('width'),
     width: '100%',
@@ -49,6 +49,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export const Navbar = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+
   return (
     <Box>
       <AppBar position="static">
@@ -67,6 +69,8 @@ export const Navbar = () => {
             </SearchIconWrapper>
             <StyledInputBase
               placeholder="Search…"
+              value={searchParams.get('q')}
+              onChange={(e) => setSearchParams({ q: e.target.value })}
               inputProps={{ 'aria-label': 'search' }}
             />
           </Search>
